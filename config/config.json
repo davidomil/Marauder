@@ -1,0 +1,42 @@
+{
+    "background": "config/img/background.png", 
+    "css": {
+        "font-weight": "bold",
+        "font-size": "30px",
+        "font-family": "Arial"
+    },
+    "elements": [{
+        "printName": "First Element",
+        "css": {
+            "top": "50px",
+            "left": "50px"
+        },
+        "click": {
+            "externalApp": {
+                "appUrl": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+                "appParam": ["--incognito"]
+            },
+            "externalFile": [
+                "/config/img/background.png"
+            ]
+            ,
+            "js": [
+                "alert('clicked')"
+            ],
+            "css": {
+            }
+        },
+        "hoverIn": {
+            "js": [],
+            "css": {
+                "opacity": "0.4"
+            }
+        },
+        "hoverOut": {
+            "js": [],
+            "css": {
+                "opacity": "1"
+            }
+        }
+    }]
+}

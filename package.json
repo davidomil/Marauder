@@ -1,0 +1,20 @@
+{
+  "name": "marauder",
+  "version": "1.0.0",
+  "description": "Configurable page with buttons and their execution",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --asar --prune=true --out=release-builds --ignore=\"config\"",
+    "package-win": "electron-packager . Marauder --overwrite --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --asar --prune=true --out=release-builds --win32metadata.CompanyName='Orri Systems LLC' --win32metadata.LegalCopyright=\"Copyright © 2018 Orri Systems, LLC. All rights reserved.\" --win32metadata.FileDescription=\"Configurable page with buttons and their execution\" --win32metadata.ProductName=\"Marauder\" --ignore=\"config\"",
+    "package-linux": "electron-packager . Marauder --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --asar --prune=true --out=release-builds --ignore=\"config\""
+  },
+  "author": "David Miler",
+  "devDependencies": {
+    "electron": "^2.0.5",
+    "electron-packager": "^12.1.0"
+  },
+  "dependencies": {
+    "jshint": "^2.9.5"
+  }
+}

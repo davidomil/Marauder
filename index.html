@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Presentations</title>
+
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+
+  <!-- Insert this line above script imports  -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+
+  <!-- normal script imports etc  -->
+  <script src="js/jquery.min.js"></script>
+
+  <!-- Insert this line after script imports -->
+  <script>
+    if (window.module) module = window.module;
+  </script>
+
+</head>
+
+<body>
+  <div id='container'>
+
+  </div>
+
+  <script>
+    const electron = require('electron');
+    const {
+      ipcRenderer
+    } = electron;
+
+    // setup add
+    ipcRenderer.on('item:add', (e,id, name) => {
+      console.log('Adding new item: ' + name);
+      $('<div></div>').attr('id','item_'+id).appendTo($('#container')).text(name).hover(function(){
+        ipcRenderer.send('item:hoverIn', this.id); // hover in
+      },function(){
+        ipcRenderer.send('item:hoverOut', this.id); // hover out
+      }).click(function(){
+        ipcRenderer.send('item:click', this.id); // click
+      });
+    });
+
+    // setup add background
+    ipcRenderer.on('setbackground', (e, url) => {
+      console.log('Setting background: ' + url);
+      $('#container').css('background-image', 'url(' + url + ')');
+    });
+
+    // setup set css
+    ipcRenderer.on('item:setcss',(e,item,css_key,css_value)=>{
+      console.log('Setting ' + css_key + ' on ' + item + ' to ' + css_value);
+      $(item).css(css_key,css_value);
+    });
+
+   // setup run js
+   ipcRenderer.on('runJS',(e,code)=>{
+      console.log('Running external JS: ' + code);
+      eval(code);
+    });
+
+  </script>
+</body>
+
+</html>
